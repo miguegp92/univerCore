@@ -15,7 +15,7 @@ class alumnosController extends Controller
     public function __construct()
     {
        
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -32,28 +32,37 @@ class alumnosController extends Controller
 
     public function create(Request $request){
         $alumno = new Alumno();
-        $alumno->nombre = $request->nombre;
-        $alumno->apellidos = $request->apellidos;
-        $alumno->dni = $request->dni;
-        $alumno->provincia = $request->provincia;
-        $alumno->localidad = $request->localidad;
-        $alumno->fechanacimiento = $request->fechanacimiento;
-        $alumno->sexo = $request->sexo;
+        $alumno = $this->rellenarCampos($request, $alumno);
 
         if($alumno->save()){
             return redirect('alumnos');
         }else{
-            echo "<script>alert('Ha ocurrido un error a la hora de crear la asignatura');windows.back();</script>";
+            echo "<script>alert('Ha ocurrido un error a la hora de crear el alumno');windows.back(-1);</script>";
         }
        
     }
 
-    public function edit($id){
-        $alumno = new Alumno();
-        //$alumno->id = $id;
-        $array =  $alumno->edit($id);
+    public function edit(Request $request){
+        $alumno = Alumno::find($request->id);
+        $alumno = $this->rellenarCampos($request, $alumno);
+        if($alumno->save()){
+            return redirect('alumnos');
+        }else{
+            echo "<script>alert('Se ha producido un error a la hora de actualizar los datos');</script>";
+        }
     }
+    public function rellenarCampos($request, $alumno){
 
+        $alumno->nombre = $request->nombre;
+        $alumno->apellidos = $request->apellidos;
+        $alumno->dni=$request->dni;
+        $alumno->localidad=$request->localidad;
+        $alumno->provincia=$request->provincia;
+        $alumno->fechanacimiento=$request->fechanacimiento;
+        $alumno->sexo=$request->sexo;
+
+        return $alumno;
+    }
     public function destroy($id){
         $alumno = Alumno::find($id);
         $alumno->delete();
@@ -63,9 +72,7 @@ class alumnosController extends Controller
 
     public function dataAlumnos($id)
     {
-        //$alumno = new Alumno();
-        $alumno->id = $id;
-        $array = $alumno->dataUsuario($id);
-        return view('dataAlumno');
+        $alumno = Alumno::find($id);
+        return $alumno;
     }
 }

@@ -14,7 +14,7 @@ class asignaturasController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -41,15 +41,21 @@ class asignaturasController extends Controller
     }
 
     public function edit(){
-        $asignatura = new Asignatura();
+        //$asignatura = new Asignatura();
         //$alumno->id = $id;
-        $asignatura =  $asignatura->edit($id);
+        //$asignatura =  $asignatura->edit($id);
     }
 
     public function destroy($id){
         $asignatura = Asignatura::find($id);
         $asignatura->delete();
         return redirect('asignaturas');
+    }
+
+    public function dataAsignatura($id)
+    {
+        $asignatura = Asignatura::find($id);
+        return $asignatura;
     }
 
     public function listar()

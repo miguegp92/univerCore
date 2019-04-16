@@ -6,22 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 //Modelo para la tabla de Alumnos
 class Alumno extends Model
 {
-    public function listarTodos(){
-        return ["Listar todos los alumnos"];
-    }
-
-    public function create(){
-        return "Insertar usuario";
-    }
-
-    public function edit($id){
-        return "Editar usuario ".$this->id;
-    }
-    /*
-    public function delete($id){
-        return "Borrar usuario ".$id;
-    }
-    */
     public function matricular($id){
         
     }

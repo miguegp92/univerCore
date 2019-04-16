@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('js/ajax.js') }}" defer></script>
 <div class="container">
     <h1>Asignaturas de la Universidad</h1>
     <p>
