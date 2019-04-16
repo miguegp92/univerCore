@@ -81,11 +81,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Cover Manager
+                    Gestión Universidad
                 </div>
 
                 <div class="links">
-                    Prueba Cover Manager de Miguel Angel Galán
+                    Prueba Laravel de Miguel Angel Galán
                 </div>
             </div>
         </div>
