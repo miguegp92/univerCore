@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    tr.trclickable{
+        cursor: pointer;
+    }
+</style>
+<script src="{{ asset('js/ajax.js') }}" defer></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -11,6 +17,7 @@
                 <p>
                     <input type="search" id="search" class="form-control" placeholder="Introduzca el nombre del alumno o asignatura">
                 </p>
+                <table width="100%" id="resultSearch"></table>
                 <!--
                 <p>Pulse una de las siguientes opciones que desee gestionar:</p>
                   <p> <a href="{{ url('/alumnos') }}" class="link-primary">Administrar Alumnos</a> </p>

@@ -28,10 +28,39 @@ $(document).ready(function(){
        $("#editar"+array.sexo).prop("checked", true);
 
     }
-
+    /*
     function setDataAsignatura(array){
 
         $().val();
      }
-
+    */
+    $("#search").keyup(function(){
+        $("table#resultSearch").html("");
+        var texto = $(this).val();
+        var controlador = "alumnos/search/"+texto;
+        $.ajax({
+            url: controlador,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            method: "POST",
+            success: function(response) {
+                //Acciones si success
+                $.each(response, function(index, alumno){
+                    //alert(response.length);
+                    $("table#resultSearch").append("<tr class='trclickable'><td>"+alumno.nombre+" "+alumno.apellidos+"</td><td>"+alumno.dni+"</td></tr>")
+                    $("tr.trclickable").css("cursor","pointer");
+                    $("td tr.trclickable").css("color","blue");
+                })
+               
+                //console.log(response.length);
+            },
+            error: function () {
+                var error = "error "+texto;
+                //Acciones si error
+                console.log(error);
+            }
+        });
+        
+    });
 });

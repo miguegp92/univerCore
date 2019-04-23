@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Gestión de los alumnos
 Route::get('/alumnos', 'alumnosController@index')->name("alumnos");
 Route::post('/alumnos/new', 'alumnosController@create')->name('newAlumno');
+Route::post('/alumnos/search/{busqueda}', 'alumnosController@search');
 Route::get('/alumnos/{id}/data', 'alumnosController@dataAlumnos');
 Route::post('/alumnos/edit', 'alumnosController@edit')->name('editAlumno');
 Route::get('/alumnos/{id}/delete', 'alumnosController@destroy');

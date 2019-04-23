@@ -30,6 +30,18 @@ class alumnosController extends Controller
         return view('alumnos', compact("alumnos"));
     }
 
+    public function search($cadena = '')
+    {
+       // $alumno = new Alumno();
+      /*
+       $consulta = DB::select("Select concat(nombre, ' ', apellidos), dni, id from alumnos where "
+       ."(nombre like  '%".$cadena."%' OR apellidos like  '%".$cadena."%');");
+       */
+      $consulta = Alumno::where('nombre', $cadena)->orWhere('nombre', 'like', '%'.$cadena.'%')->get();
+        //$alumnos = Alumno::all();
+        return $consulta;
+    }
+
     public function create(Request $request){
         $alumno = new Alumno();
         $alumno = $this->rellenarCampos($request, $alumno);
