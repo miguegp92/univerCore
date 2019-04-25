@@ -48,9 +48,7 @@ $(document).ready(function(){
                 //Acciones si success
                 $.each(response, function(index, alumno){
                     //alert(response.length);
-                    $("table#resultSearch").append("<tr class='trclickable'><td>"+alumno.nombre+" "+alumno.apellidos+"</td><td>"+alumno.dni+"</td></tr>")
-                    $("tr.trclickable").css("cursor","pointer");
-                    $("td tr.trclickable").css("color","blue");
+                    $("table#resultSearch").append("<tr><td><a href='alumnos/"+alumno.id+"/eval'> "+alumno.nombre+" "+alumno.apellidos+"</a></td></tr>")
                 })
                
                 //console.log(response.length);

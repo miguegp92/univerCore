@@ -23,7 +23,7 @@
                             <td>{{$elemento->dni}}</td>
                             <td>{{$elemento->localidad}} ({{$elemento->provincia}})</td>
                             <td class="text-center">
-                            <a class="text-success btn"> <i class='fas fa-check'></i> Evaluar</a>
+                            <a class="text-success btn"  href="{{ action('alumnosController@eval', ['id' => $elemento->id]) }}"> <i class='fas fa-check'></i> Evaluar</a>
                                <!-- <a class="text-info" id="" class="clickable" data-toggle="modal" data-target="#alumnosModal" href="{{ action('alumnosController@edit', ['id' => $elemento->id]) }}">  <i class='fas fa-pen-square'></i> Editar</a>-->
                                 <button class="btn btn-link clickable" id="alumnos" data-toggle="modal" data-target="#alumnosEdit"><i class='fas fa-pen-square'></i> Editar</button>
                                 <a class="text-danger btn" href="{{ action('alumnosController@destroy', ['id' => $elemento->id]) }}"> <i class='fas fa-trash-alt'></i>Eliminar</a>

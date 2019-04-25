@@ -24,6 +24,7 @@ Route::get('/alumnos', 'alumnosController@index')->name("alumnos");
 Route::post('/alumnos/new', 'alumnosController@create')->name('newAlumno');
 Route::post('/alumnos/search/{busqueda}', 'alumnosController@search');
 Route::get('/alumnos/{id}/data', 'alumnosController@dataAlumnos');
+Route::get('/alumnos/{id}/eval', 'alumnosController@eval');
 Route::post('/alumnos/edit', 'alumnosController@edit')->name('editAlumno');
 Route::get('/alumnos/{id}/delete', 'alumnosController@destroy');
 

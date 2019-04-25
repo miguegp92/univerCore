@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Alumno;
 
+
 class alumnosController extends Controller
 {
     /**
@@ -25,20 +26,13 @@ class alumnosController extends Controller
      */
     public function index()
     {
-       // $alumno = new Alumno();
         $alumnos = Alumno::all();
         return view('alumnos', compact("alumnos"));
     }
 
     public function search($cadena = '')
     {
-       // $alumno = new Alumno();
-      /*
-       $consulta = DB::select("Select concat(nombre, ' ', apellidos), dni, id from alumnos where "
-       ."(nombre like  '%".$cadena."%' OR apellidos like  '%".$cadena."%');");
-       */
       $consulta = Alumno::where('nombre', $cadena)->orWhere('nombre', 'like', '%'.$cadena.'%')->get();
-        //$alumnos = Alumno::all();
         return $consulta;
     }
 
@@ -76,10 +70,19 @@ class alumnosController extends Controller
         return $alumno;
     }
     public function destroy($id){
-        $alumno = Alumno::find($id);
+        $alumno = $this->dataAlumnos($id);
         $alumno->delete();
         return redirect('alumnos');
-       // $array =   "Borrar usuario ".$id;
+    }
+
+    public function eval($id){
+        $alumno = new Alumno();
+        $matriculadas = $alumno->listarMatriculadas($id);
+        $noMatriculas = $alumno->listAsigPendientes($id);
+
+        return view('dataAlumno')->with("alumno", $this->dataAlumnos($id))
+                    ->with("matriculadas", $matriculadas)
+                    ->with("noMatriculas", json_decode($noMatriculas));
     }
 
     public function dataAlumnos($id)
